@@ -1,0 +1,5 @@
+G:\Projetos\FullCycle\Codeflix\FC.Codeflix.Catalog\tests\FC.Codeflix.Catalog.UnitTests\obj\Debug\net6.0\FC.Codeflix.Catalog.UnitTests.csproj.AssemblyReference.cache
+G:\Projetos\FullCycle\Codeflix\FC.Codeflix.Catalog\tests\FC.Codeflix.Catalog.UnitTests\obj\Debug\net6.0\FC.Codeflix.Catalog.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
+G:\Projetos\FullCycle\Codeflix\FC.Codeflix.Catalog\tests\FC.Codeflix.Catalog.UnitTests\obj\Debug\net6.0\FC.Codeflix.Catalog.UnitTests.AssemblyInfoInputs.cache
+G:\Projetos\FullCycle\Codeflix\FC.Codeflix.Catalog\tests\FC.Codeflix.Catalog.UnitTests\obj\Debug\net6.0\FC.Codeflix.Catalog.UnitTests.AssemblyInfo.cs
+G:\Projetos\FullCycle\Codeflix\FC.Codeflix.Catalog\tests\FC.Codeflix.Catalog.UnitTests\obj\Debug\net6.0\FC.Codeflix.Catalog.UnitTests.csproj.CoreCompileInputs.cache
