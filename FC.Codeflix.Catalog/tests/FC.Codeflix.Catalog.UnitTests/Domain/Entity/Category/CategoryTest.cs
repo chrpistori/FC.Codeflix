@@ -17,6 +17,7 @@ public class CategoryTest
 
         // Act
         var category = new Category(validData.Name, validData.Description);
+        // alterações
 
         // Assert
         Assert.NotNull(category);
