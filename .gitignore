@@ -1,1 +1,2 @@
-/FC.Codeflix.Catalog/.vs/
+*.testlog
+ /FC.Codeflix.Catalog/.vs/
