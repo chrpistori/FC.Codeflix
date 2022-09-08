@@ -38,4 +38,16 @@ public class Category
         if (Description.Length > 10000)
             throw new EntityValidationException($"{nameof(Name)} should be less or equal 10k characters long");
     }
+
+    public void Activate()
+    {
+        IsActive = true;
+        Validate();
+    }
+
+    public void Deactivate()
+    {
+        IsActive = false;
+        Validate();
+    }
 }
