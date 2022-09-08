@@ -1,2 +1,3 @@
 *.testlog
- /FC.Codeflix.Catalog/.vs/
+ FC.Codeflix.Catalog/.vs/
+ *.vsidx
