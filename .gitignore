@@ -1,3 +1,9 @@
 FC.Codeflix.Catalog/.vs/**
 /obj
 /bin
+/FC.Codeflix.Catalog/FC.Codeflix.Catalog.Domain/bin/Debug/net6.0
+/FC.Codeflix.Catalog/FC.Codeflix.Catalog.Domain/obj/Debug/net6.0
+/FC.Codeflix.Catalog/tests/FC.Codeflix.Catalog.UnitTests/bin/Debug/net6.0
+/FC.Codeflix.Catalog/tests/FC.Codeflix.Catalog.UnitTests/obj/Debug/net6.0
+*.cache
+*.suo
