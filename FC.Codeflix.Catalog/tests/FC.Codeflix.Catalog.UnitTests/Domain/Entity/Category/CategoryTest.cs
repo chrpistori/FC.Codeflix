@@ -1,6 +1,5 @@
 ﻿using FC.Codeflix.Catalog.Domain.Exceptions;
 using FluentAssertions;
-using System.Linq;
 using Xunit;
 using DomainEntity = FC.Codeflix.Catalog.Domain.Entity;
 
@@ -193,14 +192,13 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void Update()
     {
-        var validCategory = _categoryTestFixture.GetValidCategory();
-        var category = new DomainEntity.Category(validCategory.Name, validCategory.Description);
-        var newValues = new { Name = "New Name", Description = "New Description" };
+        var category = _categoryTestFixture.GetValidCategory();
+        var categoryWithNewValues = _categoryTestFixture.GetValidCategory();
+        
+        category.Update(categoryWithNewValues.Name, categoryWithNewValues.Description);
 
-        category.Update(newValues.Name, newValues.Description);
-
-        category.Name.Should().Be(newValues.Name);
-        category.Description.Should().Be(newValues.Description);
+        category.Name.Should().Be(categoryWithNewValues.Name);
+        category.Description.Should().Be(categoryWithNewValues.Description);
     }
 
 
@@ -208,14 +206,13 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void UpdateOnlyName()
     {
-        var validCategory = _categoryTestFixture.GetValidCategory();
-        var category = new DomainEntity.Category(validCategory.Name, validCategory.Description);
-        var newValues = new { Name = "New Name"};
+        var category = _categoryTestFixture.GetValidCategory();
+        var newName = _categoryTestFixture.GetValidCategoryName();
         var currentDescription = category.Description;
 
-        category.Update(newValues.Name);
+        category.Update(newName);
 
-        category.Name.Should().Be(newValues.Name);
+        category.Name.Should().Be(newName);
         category.Description.Should().Be(currentDescription);
     }
 
@@ -227,8 +224,7 @@ public class CategoryTest
     [InlineData("   ")]
     public void UpdateErrorWhenNameIsEmpty(string? name)
     {
-        var validCategory = _categoryTestFixture.GetValidCategory();
-        var category = new DomainEntity.Category(validCategory.Name, validCategory.Description);
+        var category = _categoryTestFixture.GetValidCategory();
 
         Action action =
             () => category.Update(name!);
@@ -263,9 +259,8 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void UpdateErrorWhenNameIsGreaterThan255Characters()
     {
-        var validCategory = _categoryTestFixture.GetValidCategory();
-        var category = new DomainEntity.Category(validCategory.Name, validCategory.Description);
-        var invalidName = String.Join(null, Enumerable.Range(1, 256).Select(_ => "a").ToArray());
+        var category = _categoryTestFixture.GetValidCategory();
+        var invalidName = _categoryTestFixture.Faker.Lorem.Letter(256);
 
         Action action =
             () => category.Update(invalidName);
@@ -280,12 +275,17 @@ public class CategoryTest
     [Trait("Domain", "Category - Aggregates")]
     public void UpdateErrorWhenDescriptionIsGreaterThan10kCharacters()
     {
-        var validCategory = _categoryTestFixture.GetValidCategory();
-        var category = new DomainEntity.Category(validCategory.Name, validCategory.Description);
-        var invalidDescription = String.Join(null, Enumerable.Range(1, 10_001).Select(_ => "a").ToArray());
+        var category = _categoryTestFixture.GetValidCategory();
+        var newName = _categoryTestFixture.GetValidCategoryName();
+        //var invalidDescription = _categoryTestFixture.Faker.Lorem.Letter(10_001);
+        var invalidDescription =
+            _categoryTestFixture.Faker.Commerce.ProductDescription();
+        while(invalidDescription.Length <= 10_000)
+            invalidDescription = 
+                $"{invalidDescription}{_categoryTestFixture.Faker.Commerce.ProductDescription()}";
 
         Action action =
-            () => category.Update("Category New Name", invalidDescription);
+            () => category.Update(newName, invalidDescription);
 
         action.Should()
             .Throw<EntityValidationException>()
