@@ -22,7 +22,7 @@ public class CategoryTest
         var datetimeBefore = DateTime.Now;
 
         var category = new DomainEntity.Category(validCategory.Name, validCategory.Description);
-        var datetimeAfter = DateTime.Now;
+        var datetimeAfter = DateTime.Now.AddSeconds(1);
 
         // FluentAssertions
         category.Should().NotBeNull();
@@ -30,8 +30,8 @@ public class CategoryTest
         category.Description.Should().Be(validCategory.Description);
         category.Id.Should().NotBeEmpty();
         category.CreatedAt.Should().NotBeSameDateAs(default(DateTime));
-        (category.CreatedAt > datetimeBefore).Should().BeTrue();
-        (category.CreatedAt < datetimeAfter).Should().BeTrue();
+        (category.CreatedAt >= datetimeBefore).Should().BeTrue();
+        (category.CreatedAt <= datetimeAfter).Should().BeTrue();
         category.IsActive.Should().BeTrue();
 
         // Default Assertion
@@ -40,8 +40,8 @@ public class CategoryTest
         Assert.Equal(validCategory.Description, category.Description);
         Assert.NotEqual(default(Guid), category.Id);
         Assert.NotEqual(default(DateTime), category.CreatedAt);
-        Assert.True(category.CreatedAt > datetimeBefore);
-        Assert.True(category.CreatedAt < datetimeAfter);
+        Assert.True(category.CreatedAt >= datetimeBefore);
+        Assert.True(category.CreatedAt <= datetimeAfter);
         Assert.True(category.IsActive);
     }
 
@@ -57,15 +57,15 @@ public class CategoryTest
         var datetimeBefore = DateTime.Now;
 
         var category = new DomainEntity.Category(validCategory.Name, validCategory.Description, isActive);
-        var datetimeAfter = DateTime.Now;
+        var datetimeAfter = DateTime.Now.AddSeconds(1);
 
         category.Should().NotBeNull();
         category.Name.Should().Be(validCategory.Name);
         category.Description.Should().Be(validCategory.Description);
         category.Id.Should().NotBeEmpty();
         category.CreatedAt.Should().NotBeSameDateAs(default(DateTime));
-        (category.CreatedAt > datetimeBefore).Should().BeTrue();
-        (category.CreatedAt < datetimeAfter).Should().BeTrue();
+        (category.CreatedAt >= datetimeBefore).Should().BeTrue();
+        (category.CreatedAt <= datetimeAfter).Should().BeTrue();
         category.IsActive.Should().Be(isActive);
     }
 
