@@ -1,0 +1,20 @@
+Instalar no Visual Studio Community 2022:
+Extensions -> Manage Extensions -> Run Coverlet Report VS2022
+
+No projeto de testes, clicar com o direito e ir em Manage NuGet Packages.
+Instalar coverlet.collector e coverlet.msbuild.
+
+Ir em Tools -> Run Code Coverage
+Esperar executar e apresentar o relatório gerado.
+
+
+Em caso de erro, executar comandos abaixo no terminal, no diretório raiz do projeto de testes:
+
+dotnet test --no-build  /p:CollectCoverage=true /p:CoverletOutput='./coverage/results/' /p:CoverletOutputFormat=opencover
+
+reportgenerator "-reports:.\coverage\results\coverage.opencover.xml" "-targetdir:.\coverage\reports" reporttypes:Html
+
+start .\coverage\reports\index.html
+
+Documentação:
+https://github.com/coverlet-coverage/coverlet/blob/master/README.md
