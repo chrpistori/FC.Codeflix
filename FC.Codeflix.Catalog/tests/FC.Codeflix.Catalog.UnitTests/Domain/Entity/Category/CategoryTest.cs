@@ -151,7 +151,7 @@ public class CategoryTest
 
         action.Should()
            .Throw<EntityValidationException>()
-           .WithMessage("Name should be less or equal 10k characters long");
+           .WithMessage("Description should be less or equal 10000 characters long");
     }
 
 
@@ -295,6 +295,6 @@ public class CategoryTest
 
         action.Should()
             .Throw<EntityValidationException>()
-            .WithMessage("Name should be less or equal 10k characters long");
+            .WithMessage("Description should be less or equal 10000 characters long");
     }
 }
