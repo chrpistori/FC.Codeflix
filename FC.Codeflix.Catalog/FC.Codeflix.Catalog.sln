@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{470139D2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FC.Codeflix.Catalog.UnitTests", "tests\FC.Codeflix.Catalog.UnitTests\FC.Codeflix.Catalog.UnitTests.csproj", "{013B60FF-E7D6-4616-B451-93C7C0E426D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FC.Codeflix.Catalog.Domain", "FC.Codeflix.Catalog.Domain\FC.Codeflix.Catalog.Domain.csproj", "{42A02468-6589-4B59-8817-4575EC7A7DD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FC.Codeflix.Catalog.Domain", "FC.Codeflix.Catalog.Domain\FC.Codeflix.Catalog.Domain.csproj", "{42A02468-6589-4B59-8817-4575EC7A7DD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FC.Codeflix.Catalog.Application", "FC.Codeflix.Catalog.Application\FC.Codeflix.Catalog.Application.csproj", "{C0483910-86BE-427D-95DA-9E124C307CBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{42A02468-6589-4B59-8817-4575EC7A7DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42A02468-6589-4B59-8817-4575EC7A7DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42A02468-6589-4B59-8817-4575EC7A7DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0483910-86BE-427D-95DA-9E124C307CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0483910-86BE-427D-95DA-9E124C307CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0483910-86BE-427D-95DA-9E124C307CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0483910-86BE-427D-95DA-9E124C307CBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{013B60FF-E7D6-4616-B451-93C7C0E426D2} = {470139D2-92BD-4291-AB87-70A97FDF04DC}
 		{42A02468-6589-4B59-8817-4575EC7A7DD0} = {0705A145-BDDE-4221-B613-CD115A743F43}
+		{C0483910-86BE-427D-95DA-9E124C307CBB} = {0705A145-BDDE-4221-B613-CD115A743F43}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {068E2D01-D29F-4258-9198-5EEBB325C8ED}
