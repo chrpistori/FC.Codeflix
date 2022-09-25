@@ -46,6 +46,42 @@ public class CreateCategoryTestFixture : BaseFixture
             GetRandomBoolean()
         );
 
+    public CreateCategoryInput GetInvalidInputShortName()
+    {
+        var invalidInputShortName = GetInput();
+        invalidInputShortName.Name = invalidInputShortName.Name.Substring(0, 2);
+        return invalidInputShortName;    
+    }
+
+    public CreateCategoryInput GetInvalidInputTooLongName()
+    {
+        var invalidInpuTootLongName = GetInput();
+        var tooLongNameForCategory = Faker.Commerce.ProductName();
+        while (tooLongNameForCategory.Length <= 255)
+            tooLongNameForCategory = $"{tooLongNameForCategory}{Faker.Commerce.ProductName()}";
+
+        invalidInpuTootLongName.Name = tooLongNameForCategory;
+        return invalidInpuTootLongName;
+    }
+
+    public CreateCategoryInput GetInvalidInputDescriptionNull()
+    {
+        var invalidInpuDescriptionNull = GetInput();
+        invalidInpuDescriptionNull.Description = null!;
+        return invalidInpuDescriptionNull;
+    }
+
+    public CreateCategoryInput GetInvalidInputTooLongDescription()
+    {
+        var invalidInpuTootLongDescription = GetInput();
+        var tooLongDescriptionForCategory = Faker.Commerce.ProductDescription();
+        while (tooLongDescriptionForCategory.Length <= 10_000)
+            tooLongDescriptionForCategory = $"{tooLongDescriptionForCategory}{Faker.Commerce.ProductDescription()}";
+
+        invalidInpuTootLongDescription.Description = tooLongDescriptionForCategory;
+        return invalidInpuTootLongDescription;
+    }
+
     public Mock<ICategoryRepository> GetRepositoryMock()
         => new();
 

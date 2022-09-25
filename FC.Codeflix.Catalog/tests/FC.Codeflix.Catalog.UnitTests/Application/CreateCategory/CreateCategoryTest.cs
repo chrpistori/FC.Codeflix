@@ -129,10 +129,13 @@ public class CreateCategoryTest
         output.CreatedAt.Should().NotBeSameDateAs(default(DateTime));
     }
 
-    [Theory(DisplayName = nameof(ThrowWhenCantInstantiateAggregate))]
+    [Theory(DisplayName = nameof(ThrowWhenCantInstantiateCategory))]
     [Trait("Application", "CreateCategory - Use Cases")]
-    [MemberData(nameof(GetInvalidInputs))]
-    public async void ThrowWhenCantInstantiateAggregate(
+    [MemberData(
+        nameof(CreateCategoryTestDataGenerator.GetInvalidInputs),
+        MemberType = typeof(CreateCategoryTestDataGenerator)
+    )]
+    public async void ThrowWhenCantInstantiateCategory(
         CreateCategoryInput input,
         string exceptionMessage
     )
@@ -147,53 +150,5 @@ public class CreateCategoryTest
         await task.Should()
             .ThrowAsync<EntityValidationException>()
             .WithMessage(exceptionMessage);
-    }
-
-    private static IEnumerable<object[]> GetInvalidInputs()
-    {
-        var fixture = new CreateCategoryTestFixture();
-        var invalidInputsList = new List<object[]>();
-
-        var invalidInputShortName = fixture.GetInput();
-        invalidInputShortName.Name = invalidInputShortName.Name.Substring(0, 2);
-        invalidInputsList.Add(new object[]
-        {
-            invalidInputShortName,
-            "Name should be at least 3 characters long"
-        });
-
-        var invalidInpuTootLongName = fixture.GetInput();
-        var tooLongNameForCategory = fixture.Faker.Commerce.ProductName();
-        while (tooLongNameForCategory.Length <= 255)
-            tooLongNameForCategory = $"{tooLongNameForCategory}{fixture.Faker.Commerce.ProductName()}";
-
-        invalidInpuTootLongName.Name = tooLongNameForCategory;
-        invalidInputsList.Add(new object[]
-        {
-            invalidInpuTootLongName,
-            "Name should be less or equal 255 characters long"
-        });
-
-        var invalidInpuDescriptionNull = fixture.GetInput();
-        invalidInpuDescriptionNull.Description = null!;
-        invalidInputsList.Add(new object[]
-        {
-            invalidInpuDescriptionNull,
-            "Description should not be null"
-        });
-
-        var invalidInpuTootLongDescription = fixture.GetInput();
-        var tooLongDescriptionForCategory = fixture.Faker.Commerce.ProductDescription();
-        while (tooLongDescriptionForCategory.Length <= 10_000)
-            tooLongDescriptionForCategory = $"{tooLongDescriptionForCategory}{fixture.Faker.Commerce.ProductDescription()}";
-
-        invalidInpuTootLongDescription.Description = tooLongDescriptionForCategory;
-        invalidInputsList.Add(new object[]
-        {
-            invalidInpuTootLongDescription,
-            "Description should be less or equal 10000 characters long"
-        });
-
-        return invalidInputsList;
     }
 }
