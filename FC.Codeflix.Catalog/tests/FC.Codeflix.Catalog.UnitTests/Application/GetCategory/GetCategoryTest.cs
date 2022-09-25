@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using FluentAssertions;
+using Moq;
 using Xunit;
 using UseCase = FC.Codeflix.Catalog.Application.UseCases.Category.GetCategory;
 
@@ -23,7 +24,7 @@ public class GetCategoryTest
             It.IsAny<CancellationToken>()
         )).ReturnsAsync(exampleCategory);
         var input = new UseCase.GetCategoryInput(exampleCategory.Id);
-        var useCase = new UseCase.GetCategory(repositoryMock);
+        var useCase = new UseCase.GetCategory(repositoryMock.Object);
 
         var output = await useCase.Handle(input, CancellationToken.None);
 
