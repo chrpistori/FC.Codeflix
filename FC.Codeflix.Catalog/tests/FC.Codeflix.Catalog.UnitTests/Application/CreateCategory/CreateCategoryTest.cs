@@ -133,7 +133,7 @@ public class CreateCategoryTest
     [Trait("Application", "CreateCategory - Use Cases")]
     [MemberData(
         nameof(CreateCategoryTestDataGenerator.GetInvalidInputs), 
-        parameters: 12,
+        parameters: 24,
         MemberType = typeof(CreateCategoryTestDataGenerator)
     )]
     public async void ThrowWhenCantInstantiateCategory(
