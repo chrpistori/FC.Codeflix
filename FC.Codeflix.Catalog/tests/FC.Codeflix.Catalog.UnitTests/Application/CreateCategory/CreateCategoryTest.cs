@@ -132,7 +132,8 @@ public class CreateCategoryTest
     [Theory(DisplayName = nameof(ThrowWhenCantInstantiateCategory))]
     [Trait("Application", "CreateCategory - Use Cases")]
     [MemberData(
-        nameof(CreateCategoryTestDataGenerator.GetInvalidInputs),
+        nameof(CreateCategoryTestDataGenerator.GetInvalidInputs), 
+        parameters: 12,
         MemberType = typeof(CreateCategoryTestDataGenerator)
     )]
     public async void ThrowWhenCantInstantiateCategory(
